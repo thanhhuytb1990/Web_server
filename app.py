@@ -14,8 +14,8 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def do_login():
-    username = request.form['thiennt']
-    password = request.form['Thien18071993@']
+    username = request.form['username']
+    password = request.form['password']
     if username == 'user1' and password == 'pass1':
         return redirect(url_for('home'))
     elif username == 'user2' and password == 'pass2':
