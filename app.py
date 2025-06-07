@@ -11,13 +11,17 @@ FTP_DIR = '/H/ANH_CA_NHAN_THIEN/minh phu'
 
 @app.route('/home')
 def home():
-    ftp = FTP()
-    ftp.connect(FTP_HOST, FTP_PORT)
-    ftp.login(FTP_USER, FTP_PASS)
-    ftp.cwd(FTP_DIR)
-    directories = ftp.nlst()
-    ftp.quit()
-    return render_template('home.html', directories=directories)
+    try:
+        ftp = FTP()
+        ftp.connect(FTP_HOST, FTP_PORT)
+        ftp.login(FTP_USER, FTP_PASS)
+        ftp.cwd(FTP_DIR)
+        directories = ftp.nlst()
+        ftp.quit()
+        return render_template('home.html', directories=directories)
+    except Exception as e:
+        return f"Lỗi khi kết nối FTP: {e}"
+
 
 def login():
     return render_template('login.html')
