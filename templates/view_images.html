@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Xem ảnh</title>
-</head>
+<head><title>Ảnh trong {{ directory }}</title></head>
 <body>
-    <h2>Ảnh trong thư mục {{ directory }}</h2>
-    <ul>
-        {% for image in images %}
-        <li>
-            <img src="ftp://{{ FTP_USER }}:{{ FTP_PASS }}@{{ FTP_HOST }}/{{ FTP_DIR }}/{{ directory }}/{{ image }}" alt="{{ image }}" width="200">
-        </li>
+    <h2>Ảnh trong {{ directory }}</h2>
+    <a href="{{ url_for('home') }}">← Trở lại</a>
+    <div>
+        {% for img in images %}
+            <div>
+                <img src="http://{{ FTP_HOST }}:{{ FTP_PORT }}/{{ FTP_DIR }}/{{ directory }}/{{ img }}" width="200"/>
+                <p>{{ img }}</p>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
