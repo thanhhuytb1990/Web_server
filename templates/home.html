@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Trang chính</title>
-</head>
+<head><title>Danh sách thư mục</title></head>
 <body>
-    <h2>Danh sách thư mục</h2>
+    <h2>Thư mục ảnh</h2>
     <ul>
-        {% for directory in directories %}
-        <li><a href="{{ url_for('view_images', directory=directory) }}">{{ directory }}</a></li>
+        {% for dir in directories %}
+            <li><a href="{{ url_for('view_images', directory=dir) }}">{{ dir }}</a></li>
         {% endfor %}
     </ul>
 </body>
