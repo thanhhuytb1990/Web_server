@@ -3,12 +3,22 @@ from ftplib import FTP
 
 app = Flask(__name__)
 
-FTP_HOST = 'a-717.myddns.me:1157'
+FTP_HOST = 'a-717.myddns.me'
+FTP_PORT = 1157
 FTP_USER = 'Web_server'
 FTP_PASS = 'Thien180793@'
 FTP_DIR = '/H/ANH_CA_NHAN_THIEN/minh phu'
 
-@app.route('/')
+@app.route('/home')
+def home():
+    ftp = FTP()
+    ftp.connect(FTP_HOST, FTP_PORT)
+    ftp.login(FTP_USER, FTP_PASS)
+    ftp.cwd(FTP_DIR)
+    directories = ftp.nlst()
+    ftp.quit()
+    return render_template('home.html', directories=directories)
+
 def login():
     return render_template('login.html')
 
