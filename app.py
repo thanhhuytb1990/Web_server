@@ -8,7 +8,18 @@ FTP_PORT = 1157
 FTP_USER = 'Web_server'
 FTP_PASS = 'Thien180793@'
 FTP_DIR = '/H/ANH_CA_NHAN/ANH_CA_NHAN_THIEN/minh phu'
-
+try:
+    ftp = FTP()
+    ftp.connect(FTP_HOST, FTP_PORT, timeout=10)
+    ftp.login(FTP_USER, FTP_PASS)
+    ftp.set_pasv(True)  # Quan trọng!
+    ftp.cwd(FTP_DIR)
+    files = ftp.nlst()
+    ftp.quit()
+    print("Danh sách file:", files)
+except Exception as e:
+    print("Lỗi:", e)
+    
 # Giao diện đăng nhập
 @app.route('/login', methods=['GET'])
 def login():
